@@ -8,15 +8,18 @@ import{
     useTheme,
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { Formik } from "formik";
-import * as yup from "yup";
+import { Formik } from "formik";//a React form handling library
+import * as yup from "yup"; //Used for schema validation
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
-import Dropzone from "react-dropzone";
+import Dropzone from "react-dropzone";//for drag-and-drop file uploads
 import FlexBetween from "../../components/FlexBetween";
 import { InsertPageBreakOutlined } from "@mui/icons-material";
 
+
+//These are validation schemas created using Yup. 
+//They will be used by Formik to validate the form inputs.
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("required"),
     lastName: yup.string().required("required"),
@@ -33,6 +36,7 @@ const loginSchema = yup.object().shape({
 
 })
 
+//Initial states for the registration and login form fields
 const initialValuesRegister = {
     firstName: " ",
     lastName: " ",
@@ -50,10 +54,10 @@ const initialValuesLogin = {
 
 const Form = () => {
     const[pageType, setPageType] = useState("login");
-    const { palette } = useTheme();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const isNonMobile = useMediaQuery("(min-width:600px)");
+    const { palette } = useTheme();//To access the theme of the application.
+    const dispatch = useDispatch();//For dispatching actions to the Redux store.
+    const navigate = useNavigate();// For navigating between routes.
+    const isNonMobile = useMediaQuery("(min-width:600px)");//For responsive design checks.
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
 
@@ -102,6 +106,7 @@ const Form = () => {
         }
     };
 
+    //Determines which function (register or login) should be called based on the pageType.
     const handleFormSubmit = async(values, onSubmitProps) => {
         if(isLogin) await login(values, onSubmitProps);
         if(isRegister) await register(values, onSubmitProps);
