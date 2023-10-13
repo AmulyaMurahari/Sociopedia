@@ -1,9 +1,11 @@
+//imports
 import { useSelector } from "react-redux";
 import Navbar from "../../scenes/navbar";
 import { Box, useMediaQuery } from "@mui/material";
 import UserWidget from "../widgets/UserWidget";
 import MyPostWidget from "../../scenes/widgets/MyPostWidget";
 import PostsWidget from "../widgets/PostsWidget";
+
 
 
 const HomePage = () => {
