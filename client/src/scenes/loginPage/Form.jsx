@@ -229,8 +229,6 @@ const Form = () => {
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               sx={{ gridColumn: "span 4" }}
-              autocomplete="current-password"
-              
             />
           </Box>
 
